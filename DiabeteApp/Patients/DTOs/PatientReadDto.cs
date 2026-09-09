@@ -1,6 +1,6 @@
-﻿namespace Patients.Entities
+﻿namespace Patients.DTOs
 {
-    public class Patient
+    public class PatientReadDto
     {
         public int Id { get; set; }
         public string Prenom { get; set; }

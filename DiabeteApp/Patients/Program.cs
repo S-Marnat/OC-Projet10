@@ -1,9 +1,16 @@
 using Patients.Data;
+using Patients.Repositories.Interfaces;
+using Patients.Repositories.Implementations;
+using Patients.Services.Interfaces;
+using Patients.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Configuration des dépendances
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+
+builder.Services.AddScoped<IPatientService, PatientService>();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
