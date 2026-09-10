@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Patients.Services.Interfaces;
 using Patients.DTOs;
+using Patients.Services.Interfaces;
 
+[Authorize(Roles = "Organisateur")]
 [Route("api/[controller]")]
 [ApiController]
 public class PatientsController : ControllerBase
