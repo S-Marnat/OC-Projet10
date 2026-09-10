@@ -13,7 +13,7 @@ public class PatientsController : ControllerBase
         _patientService = patientService;
     }
 
-    // GET: api/Patient
+    // GET: api/Patients
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PatientReadDto>>> GetPatients()
     {
@@ -28,7 +28,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // GET: api/Patient/5
+    // GET: api/Patients/5
     [HttpGet("{id}")]
     public async Task<ActionResult<PatientReadDto>> GetPatient(int id)
     {
@@ -47,7 +47,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // PUT: api/Patient/5
+    // PUT: api/Patients/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutPatient(int id, PatientUpdateDto dto)
     {
@@ -59,7 +59,7 @@ public class PatientsController : ControllerBase
             var result = await _patientService.UpdateAsync(id, dto);
 
             if (result == null)
-                return NotFound("L'ID renseigné ne correspond à aucun patient.");
+                return NotFound("L'Id renseigné ne correspond à aucun patient.");
 
             return Ok(result);
         }
@@ -69,7 +69,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // POST: api/Patient
+    // POST: api/Patients
     [HttpPost]
     public async Task<ActionResult<PatientReadDto>> PostPatient(PatientCreateDto dto)
     {
@@ -88,7 +88,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // DELETE: api/Patient/5
+    // DELETE: api/Patients/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePatient(int id)
     {
@@ -97,7 +97,7 @@ public class PatientsController : ControllerBase
             var result = await _patientService.DeleteAsync(id);
 
             if (!result)
-                return NotFound("L'ID renseigné ne correspond à aucun patient.");
+                return NotFound("L'Id renseigné ne correspond à aucun patient.");
 
             return NoContent();
         }
