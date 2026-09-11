@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Front/Front.csproj" />
   <Project Path="Gateway/Gateway.csproj" />
+  <Project Path="Patients.Tests/Patients.Tests.csproj" Id="b1963a78-4bd2-416c-b9ff-1b5e4fd1dcb5" />
   <Project Path="Patients/Patients.csproj" />
 </Solution>
