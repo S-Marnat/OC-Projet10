@@ -14,6 +14,36 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+
+// Configuration de Swagger
+builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen(options =>
+//{
+//    options.AddSecurityDefinition("cookieAuth", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+//    {
+//        Name = "Cookie",
+//        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+//        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+//        Description = "Cookie d'authentification Identity"
+//    });
+
+//    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+//    {
+//        {
+//            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+//            {
+//                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+//                {
+//                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+//                    Id = "cookieAuth"
+//                }
+//            },
+//            new string[] {}
+//        }
+//    });
+//});
 
 
 // Configuration d'EF Core
@@ -74,6 +104,12 @@ using (var scope = app.Services.CreateScope())
 
 
 // Pipeline HTTP
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
