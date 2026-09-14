@@ -1,4 +1,4 @@
-namespace Front.Models
+namespace Front.ViewModels
 {
     public class ErrorViewModel
     {

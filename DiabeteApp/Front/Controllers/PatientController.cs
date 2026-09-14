@@ -2,7 +2,7 @@
 
 namespace Front.Controllers
 {
-    public class PatientsController : Controller
+    public class PatientController : Controller
     {
         public IActionResult Index()
         {
