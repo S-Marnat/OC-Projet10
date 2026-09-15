@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Modifier un patient";
+}
+
+@model Front.ViewModels.PatientEditViewModel
+
+<h2>Modifier un patient</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Prenom" class="form-label">Prénom *</label>
+        <input asp-for="Prenom" class="form-control" />
+        <span asp-validation-for="Prenom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nom" class="form-label">Nom *</label>
+        <input asp-for="Nom" class="form-control" />
+        <span asp-validation-for="Nom" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DateDeNaissance" class="form-label">Date de naissance *</label>
+        <input asp-for="DateDeNaissance" type="date" class="form-control" />
+        <span asp-validation-for="DateDeNaissance" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Genre" class="form-label">Genre *</label>
+        <select asp-for="Genre" class="form-select">
+            <option value="F">Femme</option>
+            <option value="M">Homme</option>
+        </select>
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Adresse" class="form-label">Adresse</label>
+        <input asp-for="Adresse" class="form-control" />
+        <span asp-validation-for="Adresse" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Telephone" class="form-label">Téléphone</label>
+        <input asp-for="Telephone" class="form-control" />
+        <span asp-validation-for="Telephone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <p>Les champs marqués d'un astérisque (*) sont obligatoires.</p>
+    </div>
+
+    <button type="submit" class="btn btn-warning">Modifier</button>
+    <a class="btn btn-secondary" href="/Patient">Annuler</a>
+</form>

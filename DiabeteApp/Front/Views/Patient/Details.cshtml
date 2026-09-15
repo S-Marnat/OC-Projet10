@@ -2,6 +2,20 @@
     ViewData["Title"] = "Détail du patient";
 }
 
-<h1>Détail du patient</h1>
+@model Front.ViewModels.PatientDetailsViewModel
 
-<p>Les informations du patient seront affichées ici.</p>
+<h2>Détails du patient</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4>@Model.Prenom @Model.Nom</h4>
+
+        <p><strong>Date de naissance :</strong> @Model.DateDeNaissance.ToShortDateString()</p>
+        <p><strong>Genre :</strong> @Model.Genre</p>
+        <p><strong>Adresse :</strong> @Model.Adresse</p>
+        <p><strong>Téléphone :</strong> @Model.Telephone</p>
+
+        <a class="btn btn-primary" href="/Patient/Edit/@Model.Id">Modifier</a>
+        <a class="btn btn-secondary" href="/Patient/Index">Retour à la liste</a>
+    </div>
+</div>

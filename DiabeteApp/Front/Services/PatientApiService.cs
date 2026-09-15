@@ -24,5 +24,23 @@ namespace Front.Services
             var patient = await _httpClient.GetFromJsonAsync<PatientDetailsViewModel>($"patients/{id}");
             return patient;
         }
+
+        public async Task<bool> CreatePatientAsync(PatientCreateViewModel patient)
+        {
+            var response = await _httpClient.PostAsJsonAsync("patients", patient);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> UpdatePatientAsync(int id, PatientEditViewModel patient)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"patients/{id}", patient);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> DeletePatientAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"patients/{id}");
+            return response.IsSuccessStatusCode;
+        }
     }
 }

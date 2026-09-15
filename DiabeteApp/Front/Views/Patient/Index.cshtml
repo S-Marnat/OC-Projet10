@@ -2,6 +2,32 @@
     ViewData["Title"] = "Liste des patients";
 }
 
-<h1>Liste des patients</h1>
+@model List<Front.ViewModels.PatientListViewModel>
 
-<p>La liste des patients sera affichée ici.</p>
+<h2>Liste des patients</h2>
+
+<a class="btn btn-primary" href="/Patient/Create">Créer un patient</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Prenom</td>
+                <td>@p.Nom</td>
+                <td>@p.DateDeNaissance.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-primary" href="/Patient/Details/@p.Id">Détails</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
