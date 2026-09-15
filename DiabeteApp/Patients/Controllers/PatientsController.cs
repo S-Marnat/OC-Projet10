@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Patients.DTOs;
 using Patients.Services.Interfaces;
 
-[Authorize(Roles = "Organisateur")]
+//[Authorize(Roles = "Organisateur")]
 [Route("api/[controller]")]
 [ApiController]
 public class PatientsController : ControllerBase

@@ -1,7 +1,15 @@
+using Front.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Configuration des dépendances
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<PatientApiService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7181");
+});
 
 
 // Construction de l'application

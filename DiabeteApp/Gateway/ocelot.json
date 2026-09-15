@@ -9,9 +9,22 @@
         }
       ],
       "UpstreamPathTemplate": "/patients",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/patients/{id}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ],
+      "UpstreamPathTemplate": "/patients/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     }
   ],
+
   "GlobalConfiguration": {
     "BaseUrl": "https://localhost:7181"
   }
