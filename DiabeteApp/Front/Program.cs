@@ -12,6 +12,17 @@ builder.Services.AddHttpClient<PatientApiService>(client =>
 });
 
 
+// Configuration de l'authentification et de l'autorisation
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie("Cookies", options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.LogoutPath = "/Account/Logout";
+    });
+
+builder.Services.AddAuthorization();
+
+
 // Construction de l'application
 var app = builder.Build();
 
@@ -19,20 +30,20 @@ var app = builder.Build();
 // Pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Patient}/{action=Index}/{id?}")
+    pattern: "{controller=Account}/{action=Login}")
     .WithStaticAssets();
 
 app.Run();

@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Identity;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -8,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuration d'Ocelot
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddCookie(IdentityConstants.ApplicationScheme);
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie("Cookies");
 builder.Services.AddAuthorization();
 
 builder.Services.AddOcelot();

@@ -1,0 +1,25 @@
+﻿@model Front.ViewModels.LoginViewModel
+
+<h2>Connexion</h2>
+
+<form asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger" aria-live="polite"></div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger" aria-live="polite"></span>
+    </div>
+
+    <div>
+        <label>Mot de passe</label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger" aria-live="polite"></span>
+    </div>
+
+    <div>
+        <input asp-for="RememberMe" type="checkbox" />
+        <label asp-for="RememberMe">Se souvenir de moi</label>
+    </div>
+
+    <button type="submit">Se connecter</button>
+</form>

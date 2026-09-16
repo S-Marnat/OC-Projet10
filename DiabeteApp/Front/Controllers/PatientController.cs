@@ -1,9 +1,11 @@
 ﻿using Front.Services;
-using Microsoft.AspNetCore.Mvc;
 using Front.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Front.Controllers
 {
+    [Authorize(Roles = "Organisateur")]
     public class PatientController : Controller
     {
         private readonly PatientApiService _patientApiService;
@@ -14,6 +16,7 @@ namespace Front.Controllers
         }
 
         // GET: Patient
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var patients = await _patientApiService.GetAllPatientsAsync();
@@ -21,6 +24,7 @@ namespace Front.Controllers
         }
 
         // GET: Patient/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var patient = await _patientApiService.GetPatientByIdAsync(id);
@@ -32,6 +36,7 @@ namespace Front.Controllers
         }
 
         // GET: Patient/Create
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             return View();
@@ -52,6 +57,7 @@ namespace Front.Controllers
         }
 
         // GET: Patient/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var patient = await _patientApiService.GetPatientByIdAsync(id);
@@ -88,6 +94,7 @@ namespace Front.Controllers
         }
 
         // GET: Patient/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var patient = await _patientApiService.GetPatientByIdAsync(id);

@@ -9,7 +9,10 @@
         }
       ],
       "UpstreamPathTemplate": "/patients",
-      "UpstreamHttpMethod": [ "GET", "POST" ]
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "HttpHandlerOptions": {
+        "UseCookieContainer": true
+      }
     },
 
     {
@@ -21,7 +24,10 @@
         }
       ],
       "UpstreamPathTemplate": "/patients/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "HttpHandlerOptions": {
+        "UseCookieContainer": true
+      }
     }
   ],
 

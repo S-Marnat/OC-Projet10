@@ -21,9 +21,9 @@ namespace Front.ViewModels
         [Display(Name = "Date de naissance")]
         public DateTime DateDeNaissance { get; set; }
 
-        [Required(ErrorMessage = "Le genre est obligatoire.")]
+        [Required]
         [MaxLength(1)]
-        [RegularExpression("F|M", ErrorMessage = "Le genre doit être F ou M.")]
+        [RegularExpression("F|M", ErrorMessage = "Le genre est obligatoire.")]
         [Display(Name = "Genre")]
         public string Genre { get; set; } = string.Empty;
 
