@@ -1,11 +1,9 @@
 ﻿using Front.Services;
 using Front.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Front.Controllers
 {
-    [Authorize(Roles = "Organisateur")]
     public class PatientController : Controller
     {
         private readonly PatientApiService _patientApiService;

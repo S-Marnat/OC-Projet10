@@ -12,10 +12,17 @@ namespace Patients.Data
         }
 
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            // -- Relation RefreshToken -> IdentityUser --
+            modelBuilder.Entity<RefreshToken>()
+                .HasOne(rt => rt.User)
+                .WithMany()
+                .HasForeignKey(rt => rt.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // -- Seed Data --
             modelBuilder.Entity<Patient>().HasData(

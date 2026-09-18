@@ -6,21 +6,29 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuration des dépendances
 builder.Services.AddControllersWithViews();
 
+
+// Session (pour stocker le JWT + RefreshToken)
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
+// HttpContextAccessor (pour accéder à la session dans les services)
+builder.Services.AddHttpContextAccessor();
+
+
+// HttpClient pour appeler le Gateway
 builder.Services.AddHttpClient<PatientApiService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7181");
 });
 
-
-// Configuration de l'authentification et de l'autorisation
-builder.Services.AddAuthentication("Cookies")
-    .AddCookie("Cookies", options =>
-    {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
-    });
-
-builder.Services.AddAuthorization();
+builder.Services.AddHttpClient("GatewayClient", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7181");
+});
 
 
 // Construction de l'application
@@ -36,8 +44,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseSession();
 
 app.MapStaticAssets();
 

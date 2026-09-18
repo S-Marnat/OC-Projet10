@@ -15,7 +15,11 @@
         <p><strong>Adresse :</strong> @Model.Adresse</p>
         <p><strong>Téléphone :</strong> @Model.Telephone</p>
 
-        <a class="btn btn-primary" href="/Patient/Edit/@Model.Id">Modifier</a>
-        <a class="btn btn-secondary" href="/Patient/Index">Retour à la liste</a>
+        <a class="btn btn-primary"
+           asp-controller="Patient"
+           asp-action="Edit"
+           asp-route-id="@Model.Id">Modifier</a>
+
+        <a class="btn btn-secondary" asp-controller="Patient" asp-action="Index">Retour à la liste</a>
     </div>
 </div>

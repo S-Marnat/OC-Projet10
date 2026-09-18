@@ -10,7 +10,5 @@ namespace Front.ViewModels
 
         [Required(ErrorMessage = "Le mot de passe est obligatoire.")]
         public string Password { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 }

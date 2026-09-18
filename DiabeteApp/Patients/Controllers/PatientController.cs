@@ -6,16 +6,16 @@ using Patients.Services.Interfaces;
 [Authorize(Roles = "Organisateur")]
 [Route("api/[controller]")]
 [ApiController]
-public class PatientsController : ControllerBase
+public class PatientController : ControllerBase
 {
     private readonly IPatientService _patientService;
 
-    public PatientsController(IPatientService patientService)
+    public PatientController(IPatientService patientService)
     {
         _patientService = patientService;
     }
 
-    // GET: api/Patients
+    // GET: api/Patient
     [HttpGet]
     public async Task<ActionResult<IEnumerable<PatientReadDto>>> GetPatients()
     {
@@ -30,7 +30,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // GET: api/Patients/5
+    // GET: api/Patient/5
     [HttpGet("{id}")]
     public async Task<ActionResult<PatientReadDto>> GetPatient(int id)
     {
@@ -49,7 +49,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // PUT: api/Patients/5
+    // PUT: api/Patient/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutPatient(int id, PatientUpdateDto dto)
     {
@@ -71,7 +71,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // POST: api/Patients
+    // POST: api/Patient
     [HttpPost]
     public async Task<ActionResult<PatientReadDto>> PostPatient(PatientCreateDto dto)
     {
@@ -90,7 +90,7 @@ public class PatientsController : ControllerBase
         }
     }
 
-    // DELETE: api/Patients/5
+    // DELETE: api/Patient/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePatient(int id)
     {

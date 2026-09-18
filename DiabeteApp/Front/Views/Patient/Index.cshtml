@@ -6,7 +6,7 @@
 
 <h2>Liste des patients</h2>
 
-<a class="btn btn-primary" href="/Patient/Create">Créer un patient</a>
+<a class="btn btn-primary" asp-controller="Patient" asp-action="Create">Créer un patient</a>
 
 <table class="table table-striped">
     <thead>
@@ -25,7 +25,10 @@
                 <td>@p.Nom</td>
                 <td>@p.DateDeNaissance.ToShortDateString()</td>
                 <td>
-                    <a class="btn btn-primary" href="/Patient/Details/@p.Id">Détails</a>
+                    <a class="btn btn-primary" 
+                       asp-controller="Patient"
+                       asp-action="Details"
+                       asp-route-id="@p.Id">Détails</a>
                 </td>
             </tr>
         }

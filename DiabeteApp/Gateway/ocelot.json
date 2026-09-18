@@ -1,32 +1,71 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/patients",
+      "DownstreamPathTemplate": "/api/account/login",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 7088
         }
       ],
-      "UpstreamPathTemplate": "/patients",
+      "UpstreamPathTemplate": "/account/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/logout",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ],
+      "UpstreamPathTemplate": "/account/logout",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/account/refresh",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ],
+      "UpstreamPathTemplate": "/account/refresh",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/api/patient",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7088
+        }
+      ],
+      "UpstreamPathTemplate": "/patient",
       "UpstreamHttpMethod": [ "GET", "POST" ],
-      "HttpHandlerOptions": {
-        "UseCookieContainer": true
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     },
 
     {
-      "DownstreamPathTemplate": "/api/patients/{id}",
+      "DownstreamPathTemplate": "/api/patient/{id}",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 7088
         }
       ],
-      "UpstreamPathTemplate": "/patients/{id}",
+      "UpstreamPathTemplate": "/patient/{id}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
-      "HttpHandlerOptions": {
-        "UseCookieContainer": true
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
       }
     }
   ],

@@ -5,15 +5,15 @@ using Patients.Services.Interfaces;
 
 namespace Patients.Tests.UnitTests.Controllers
 {
-    public class PatientsControllerTests
+    public class PatientControllerTests
     {
         private readonly Mock<IPatientService> _serviceMock;
-        private readonly PatientsController _controller;
+        private readonly PatientController _controller;
 
-        public PatientsControllerTests()
+        public PatientControllerTests()
         {
             _serviceMock = new Mock<IPatientService>();
-            _controller = new PatientsController(_serviceMock.Object);
+            _controller = new PatientController(_serviceMock.Object);
         }
 
 
