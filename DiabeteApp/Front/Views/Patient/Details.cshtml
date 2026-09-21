@@ -4,22 +4,30 @@
 
 @model Front.ViewModels.PatientDetailsViewModel
 
-<h2>Détails du patient</h2>
+<h2 class="mb-4">Détails du patient</h2>
 
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-body">
-        <h4>@Model.Prenom @Model.Nom</h4>
+        <h4 class="mb-3">@Model.Prenom @Model.Nom</h4>
 
         <p><strong>Date de naissance :</strong> @Model.DateDeNaissance.ToShortDateString()</p>
         <p><strong>Genre :</strong> @Model.Genre</p>
         <p><strong>Adresse :</strong> @Model.Adresse</p>
         <p><strong>Téléphone :</strong> @Model.Telephone</p>
 
-        <a class="btn btn-primary"
-           asp-controller="Patient"
-           asp-action="Edit"
-           asp-route-id="@Model.Id">Modifier</a>
+        <div class="mt-4">
+            <a class="btn btn-primary me-2"
+                    asp-controller="Patient"
+                    asp-action="Edit"
+                    asp-route-id="@Model.Id">
+                Modifier
+            </a>
 
-        <a class="btn btn-secondary" asp-controller="Patient" asp-action="Index">Retour à la liste</a>
+            <a class="btn btn-secondary"
+                    asp-controller="Patient"
+                    asp-action="Index">
+                Retour à la liste
+            </a>
+        </div>
     </div>
 </div>

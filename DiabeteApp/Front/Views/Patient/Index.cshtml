@@ -4,33 +4,41 @@
 
 @model List<Front.ViewModels.PatientListViewModel>
 
-<h2>Liste des patients</h2>
+<h2 class="mb-4">Liste des patients</h2>
 
-<a class="btn btn-primary" asp-controller="Patient" asp-action="Create">Créer un patient</a>
+<a class="btn btn-primary mb-3"
+        asp-controller="Patient"
+        asp-action="Create">
+    Créer un patient
+</a>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Date de naissance</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var p in Model)
-        {
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead class="table-light">
             <tr>
-                <td>@p.Prenom</td>
-                <td>@p.Nom</td>
-                <td>@p.DateDeNaissance.ToShortDateString()</td>
-                <td>
-                    <a class="btn btn-primary" 
-                       asp-controller="Patient"
-                       asp-action="Details"
-                       asp-route-id="@p.Id">Détails</a>
-                </td>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Prenom</td>
+                    <td>@p.Nom</td>
+                    <td>@p.DateDeNaissance.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-primary" 
+                               asp-controller="Patient"
+                               asp-action="Details"
+                               asp-route-id="@p.Id">
+                            Détails
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

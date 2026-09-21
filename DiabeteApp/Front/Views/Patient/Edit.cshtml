@@ -4,56 +4,62 @@
 
 @model Front.ViewModels.PatientEditViewModel
 
-<h2>Modifier un patient</h2>
+<div class="form-container">
+    <h2 class="form-title">Modifier un patient</h2>
 
-<form asp-action="Edit" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger" aria-live="polite"></div>
-    <input type="hidden" asp-for="Id" />
+    <form asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" aria-live="polite"></div>
+        <input type="hidden" asp-for="Id" />
 
-    <div class="mb-3">
-        <label asp-for="Prenom" class="form-label">Prénom <span class="rouge">*</span></label>
-        <input asp-for="Prenom" class="form-control" />
-        <span asp-validation-for="Prenom" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Prenom" class="form-label">Prénom <span class="rouge">*</span></label>
+            <input asp-for="Prenom" class="form-control" />
+            <span asp-validation-for="Prenom" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Nom" class="form-label">Nom <span class="rouge">*</span></label>
-        <input asp-for="Nom" class="form-control" />
-        <span asp-validation-for="Nom" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Nom" class="form-label">Nom <span class="rouge">*</span></label>
+            <input asp-for="Nom" class="form-control" />
+            <span asp-validation-for="Nom" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="DateDeNaissance" class="form-label">Date de naissance <span class="rouge">*</span></label>
-        <input asp-for="DateDeNaissance" type="date" class="form-control" />
-        <span asp-validation-for="DateDeNaissance" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="DateDeNaissance" class="form-label">Date de naissance <span class="rouge">*</span></label>
+            <input asp-for="DateDeNaissance" type="date" class="form-control" />
+            <span asp-validation-for="DateDeNaissance" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Genre" class="form-label">Genre <span class="rouge">*</span></label>
-        <select asp-for="Genre" class="form-select">
-            <option value="">Sélectionnez un genre</option>
-            <option value="F">Femme</option>
-            <option value="M">Homme</option>
-        </select>
-        <span asp-validation-for="Genre" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Genre" class="form-label">Genre <span class="rouge">*</span></label>
+            <select asp-for="Genre" class="form-select">
+                <option value="">Sélectionnez un genre</option>
+                <option value="F">Femme</option>
+                <option value="M">Homme</option>
+            </select>
+            <span asp-validation-for="Genre" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Adresse" class="form-label">Adresse</label>
-        <input asp-for="Adresse" class="form-control" />
-        <span asp-validation-for="Adresse" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Adresse" class="form-label">Adresse</label>
+            <input asp-for="Adresse" class="form-control" />
+            <span asp-validation-for="Adresse" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <label asp-for="Telephone" class="form-label">Téléphone</label>
-        <input asp-for="Telephone" class="form-control" />
-        <span asp-validation-for="Telephone" class="text-danger" aria-live="polite"></span>
-    </div>
+        <div class="mb-3">
+            <label asp-for="Telephone" class="form-label">Téléphone</label>
+            <input asp-for="Telephone" class="form-control" />
+            <span asp-validation-for="Telephone" class="text-danger" aria-live="polite"></span>
+        </div>
 
-    <div class="mb-3">
-        <p class="italique">Les champs marqués d'un astérisque (<span class="rouge">*</span>) sont obligatoires.</p>
-    </div>
+        <div class="mb-3">
+            <p class="italique">Les champs marqués d'un astérisque (<span class="rouge">*</span>) sont obligatoires.</p>
+        </div>
 
-    <button type="submit" class="btn btn-warning">Modifier</button>
-    <a class="btn btn-secondary" asp-controller="Patient" asp-action="Index">Annuler</a>
-</form>
+        <button type="submit"class="btn btn-primary w-100 mb-2">Modifier</button>
+        <a class="btn btn-secondary w-100"
+                asp-controller="Patient"
+                asp-action="Index">
+            Annuler
+        </a>
+    </form>
+</div>
