@@ -1,9 +1,16 @@
 using Notes.Data;
+using Notes.Repositories.Interfaces;
+using Notes.Services.Interfaces;
+using Notes.Repositories.Implementations;
+using Notes.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 // Configuration des dépendances
+builder.Services.AddScoped<INoteService, NoteService>();
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
+
 builder.Services.AddControllers();
 
 
