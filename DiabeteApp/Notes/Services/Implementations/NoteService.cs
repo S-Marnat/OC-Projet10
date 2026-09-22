@@ -37,6 +37,18 @@ namespace Notes.Services.Implementations
             return await _noteRepository.DeleteAsync(id);
         }
 
+        public async Task<NoteReadDto?> GetByIdAsync(string id)
+        {
+            // Appeler le repository
+            var entity = await _noteRepository.GetByIdAsync(id);
+
+            if (entity == null)
+                return null;
+
+            // Mapper Domain -> DTO Read
+            return ToReadDto(entity);
+        }
+
         public async Task<List<NoteReadDto>> GetByPatientAsync(int idPatient)
         {
             // Appeler le repository
