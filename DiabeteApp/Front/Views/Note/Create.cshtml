@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Création d'une note";
+}
+
+@model Front.ViewModels.NoteCreateViewModel
+
+<div class="form-container">
+    <h2 class="form-title">Création d'une note</h2>
+
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" aria-live="polite"></div>
+
+        <input type="hidden" asp-for="IdPatient" />
+
+        <div class="mb-3">
+            <label asp-for="Contenu" class="form-label">Contenu <span class="rouge">*</span></label>
+            <textarea asp-for="Contenu" class="form-control"></textarea>
+            <span asp-validation-for="Contenu" class="text-danger" aria-live="polite"></span>
+        </div>
+
+        <div class="mb-3">
+            <p class="italique">Les champs marqués d'un astérisque (<span class="rouge">*</span>) sont obligatoires.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-2">Créer</button>
+        <a class="btn btn-secondary w-100"
+                asp-controller="Patient"
+                asp-action="FichePatient"
+                asp-route-id="@Model.IdPatient">
+            Annuler
+        </a>
+    </form>
+</div>

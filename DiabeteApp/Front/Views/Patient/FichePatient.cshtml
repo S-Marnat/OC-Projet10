@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Détail du patient";
+}
+
+@model Front.ViewModels.FichePatientViewModel
+
+<h2>Détails du patient</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="mt-4">
+            @await Html.PartialAsync("Details", Model.Patient)
+        </div>
+
+        <div class="my-5">
+            @await Html.PartialAsync("NotePatient", new NotePatientViewModel
+            {
+                IdPatient = Model.Patient.Id,
+                Notes = Model.Notes
+            })
+        </div>
+
+        <div class=" mb-4 text-center">
+            <a class="btn btn-secondary"
+                    asp-controller="Patient"
+                    asp-action="Index">
+                Retour à la liste des patients
+            </a>
+        </div>
+    </div>
+</div>

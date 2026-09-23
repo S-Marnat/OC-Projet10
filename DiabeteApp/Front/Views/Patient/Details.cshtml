@@ -1,33 +1,19 @@
-﻿@{
-    ViewData["Title"] = "Détail du patient";
-}
+﻿@model Front.ViewModels.PatientDetailsViewModel
 
-@model Front.ViewModels.PatientDetailsViewModel
+<h3 class="card-title text-center">@Model.Prenom @Model.Nom</h3>
 
-<h2 class="mb-4">Détails du patient</h2>
-
-<div class="card shadow-sm">
-    <div class="card-body">
-        <h4 class="mb-3">@Model.Prenom @Model.Nom</h4>
-
-        <p><strong>Date de naissance :</strong> @Model.DateDeNaissance.ToShortDateString()</p>
-        <p><strong>Genre :</strong> @Model.Genre</p>
-        <p><strong>Adresse :</strong> @Model.Adresse</p>
-        <p><strong>Téléphone :</strong> @Model.Telephone</p>
-
-        <div class="mt-4">
-            <a class="btn btn-primary me-2"
-                    asp-controller="Patient"
-                    asp-action="Edit"
-                    asp-route-id="@Model.Id">
-                Modifier
-            </a>
-
-            <a class="btn btn-secondary"
-                    asp-controller="Patient"
-                    asp-action="Index">
-                Retour à la liste
-            </a>
-        </div>
-    </div>
+<div class="mt-4 text-center">
+    <a class="btn btn-primary me-2"
+       asp-controller="Patient"
+       asp-action="Edit"
+       asp-route-id="@Model.Id">
+        Modifier les informations du patient
+    </a>
 </div>
+
+<p><strong>Prénom :</strong> @Model.Prenom</p>
+<p><strong>Nom :</strong> @Model.Nom</p>
+<p><strong>Date de naissance :</strong> @Model.DateDeNaissance.ToShortDateString()</p>
+<p><strong>Genre :</strong> @Model.Genre</p>
+<p><strong>Adresse :</strong> @Model.Adresse</p>
+<p><strong>Téléphone :</strong> @Model.Telephone</p>

@@ -7,10 +7,12 @@ namespace Front.Controllers
     public class PatientController : Controller
     {
         private readonly PatientApiService _patientApiService;
+        private readonly NoteApiService _noteApiService;
 
-        public PatientController(PatientApiService patientApiService)
+        public PatientController(PatientApiService patientApiService, NoteApiService noteApiService)
         {
             _patientApiService = patientApiService;
+            _noteApiService = noteApiService;
         }
 
         // GET: Patient
@@ -23,14 +25,21 @@ namespace Front.Controllers
 
         // GET: Patient/Details/5
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> FichePatient(int id)
         {
             var patient = await _patientApiService.GetPatientByIdAsync(id);
+            var notes = await _noteApiService.GetNotesByPatientIdAsync(id);
 
             if (patient == null)
                 return NotFound();
 
-            return View(patient);
+            var viewModel = new FichePatientViewModel
+            {
+                Patient = patient,
+                Notes = notes
+            };
+
+            return View(viewModel);
         }
 
         // GET: Patient/Create

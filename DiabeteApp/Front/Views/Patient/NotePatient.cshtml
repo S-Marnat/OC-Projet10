@@ -1,0 +1,31 @@
+﻿@model Front.ViewModels.NotePatientViewModel
+
+<h3 class="card-title text-center">Comptes-rendus</h3>
+
+<div class="mt-4 text-center">
+    <a class="btn btn-primary me-2"
+       asp-controller="Note"
+       asp-action="Create"
+       asp-route-idPatient="@Model.IdPatient">
+        Créer une nouvelle note
+    </a>
+</div>
+
+<div class="mt-5">
+    @if (!Model.Notes.Any())
+    {
+        <p class="mt-5">Aucune note pour ce patient.</p>
+    }
+    else
+    {
+        <div>
+            @foreach (var note in Model.Notes)
+            {
+                <div class="mt-5">
+                    <p><strong>@note.DateCreation.ToShortDateString()</strong> :</p>
+                    <pre>@note.Contenu</pre>
+                </div>
+            }
+        </div>
+    }
+</div>

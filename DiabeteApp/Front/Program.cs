@@ -1,6 +1,7 @@
 using Front.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+var urlGateway = "https://localhost:7181"; // URL du Gateway
 
 
 // Configuration des dépendances
@@ -22,12 +23,17 @@ builder.Services.AddHttpContextAccessor();
 // HttpClient pour appeler le Gateway
 builder.Services.AddHttpClient<PatientApiService>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7181");
+    client.BaseAddress = new Uri(urlGateway);
+});
+
+builder.Services.AddHttpClient<NoteApiService>(client =>
+{
+    client.BaseAddress = new Uri(urlGateway);
 });
 
 builder.Services.AddHttpClient("GatewayClient", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7181");
+    client.BaseAddress = new Uri(urlGateway);
 });
 
 
