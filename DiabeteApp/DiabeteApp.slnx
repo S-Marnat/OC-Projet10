@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="Front/Front.csproj" />
   <Project Path="Gateway/Gateway.csproj" />
+  <Project Path="Notes.Tests/Notes.Tests.csproj" Id="a88373d8-ef57-4d50-ba08-14bb47c50487" />
   <Project Path="Notes/Notes.csproj" Id="9d0f97ff-3ef6-4f89-b64f-6cf2846d626c" />
   <Project Path="Patients.Tests/Patients.Tests.csproj" Id="b1963a78-4bd2-416c-b9ff-1b5e4fd1dcb5" />
   <Project Path="Patients/Patients.csproj" />
