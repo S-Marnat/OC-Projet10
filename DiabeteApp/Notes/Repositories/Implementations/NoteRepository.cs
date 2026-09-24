@@ -39,7 +39,10 @@ namespace Notes.Repositories.Implementations
         public async Task<List<Note>> GetByPatientAsync(int idPatient)
         {
             var filter = Builders<Note>.Filter.Eq(n => n.IdPatient, idPatient);
-            return await _notesCollection.Find(filter).ToListAsync();
+            return await _notesCollection
+                .Find(filter)
+                .SortByDescending(n => n.DateCreation)
+                .ToListAsync();
         }
 
         public async Task<Note> UpdateAsync(Note note)
