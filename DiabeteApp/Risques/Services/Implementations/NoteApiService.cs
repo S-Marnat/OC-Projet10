@@ -1,6 +1,5 @@
 ﻿using Risques.DTOs;
 using Risques.Services.Interfaces;
-using System.Net;
 using System.Net.Http.Headers;
 using System.Text.Json;
 
@@ -35,60 +34,21 @@ namespace Risques.Services
         // -- Méthodes utilitaires pour gérer le JWT et le RefreshToken --
         private void AddJwtHeader()
         {
-            _httpClient.DefaultRequestHeaders.Authorization = null;
+            // Récupération du JWT transmis par le Gateway
+            var authHeader = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString();
 
-            var token = _httpContextAccessor.HttpContext.Session.GetString("AccessToken");
-
-            if (!string.IsNullOrEmpty(token))
+            if (!string.IsNullOrEmpty(authHeader))
             {
+                // Nettoyage du "Bearer "
+                var token = authHeader.Replace("Bearer ", "");
+
                 _httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue("Bearer", token);
             }
         }
 
-        private async Task<bool> TryRefreshTokenAsync()
-        {
-            var refreshToken = _httpContextAccessor.HttpContext.Session.GetString("RefreshToken");
-
-            if (string.IsNullOrEmpty(refreshToken))
-                return false;
-
-            var response = await _httpClient.PostAsJsonAsync("/account/refresh", new { RefreshToken = refreshToken });
-
-            if (!response.IsSuccessStatusCode)
-                return false;
-
-            var json = await response.Content.ReadAsStringAsync();
-            var data = JsonSerializer.Deserialize<TokenResponseDto>(json, new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
-            if (data == null)
-                return false;
-
-            _httpContextAccessor.HttpContext.Session.SetString("AccessToken", data.Token);
-            _httpContextAccessor.HttpContext.Session.SetString("RefreshToken", data.RefreshToken);
-
-            return true;
-        }
-
         private async Task<HttpResponseMessage> SendWithRefreshAsync(Func<Task<HttpResponseMessage>> action)
         {
-            AddJwtHeader();
-
-            var response = await action();
-
-            if (response.StatusCode != HttpStatusCode.Unauthorized)
-                return response;
-
-            // Tentative de refresh
-            var refreshed = await TryRefreshTokenAsync();
-
-            if (!refreshed)
-                return response;
-
-            // Rejouer la requête
             AddJwtHeader();
             return await action();
         }

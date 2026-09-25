@@ -1,13 +1,35 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Risques.Services;
+using Risques.Services.Implementations;
+using Risques.Services.Interfaces;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
+var urlGateway = "https://localhost:7181"; // URL du Gateway
 
 
 // Configuration des dépendances
+builder.Services.AddScoped<IRisqueService, RisqueService>();
+
 builder.Services.AddControllers();
+
+
+// HttpContextAccessor (pour accéder à la session dans les services)
+builder.Services.AddHttpContextAccessor();
+
+
+// HttpClient pour appeler le Gateway
+builder.Services.AddHttpClient<IPatientApiService, PatientApiService>(client =>
+{
+    client.BaseAddress = new Uri(urlGateway);
+});
+
+builder.Services.AddHttpClient<INoteApiService, NoteApiService>(client =>
+{
+    client.BaseAddress = new Uri(urlGateway);
+});
 
 
 // Configuration de JWT

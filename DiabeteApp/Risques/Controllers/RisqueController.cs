@@ -17,17 +17,17 @@ public class RisqueController : ControllerBase
     }
 
     // GET: api/Risque/patient/5
-    [HttpGet("patient/{id}")]
-    public async Task<ActionResult> GetRisqueByPatient(int id)
+    [HttpGet("patient/{idPatient}")]
+    public async Task<ActionResult> GetRisqueByPatient(int idPatient)
     {
-        var patient = await _patientApiService.GetPatientByIdAsync(id);
+        var patient = await _patientApiService.GetPatientByIdAsync(idPatient);
 
         if (patient == null)
-            return NotFound($"Le patient avec l'ID {id} n'a pas été trouvé.");
+            return NotFound($"Le patient avec l'ID {idPatient} n'a pas été trouvé.");
 
         try
         {
-            var risque = await _risqueService.EvaluerRisqueAsync(id);
+            var risque = await _risqueService.EvaluerRisqueAsync(idPatient);
             return Ok(risque);
         }
         catch (Exception ex)
